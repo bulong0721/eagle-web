@@ -1,6 +1,11 @@
 import Ajax from '../utils/ajax';
 
-export async function select(params) {
-  const ajax = new Ajax().CRUD('user');
+export async function query(table, params) {
+  const ajax = new Ajax().CRUD(table);
   return await ajax.select(params);
+}
+
+export async function save(table, params) {
+  const ajax = new Ajax().CRUD(table);
+  return await ajax.insert(params);
 }

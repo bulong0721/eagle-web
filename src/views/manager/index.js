@@ -12,12 +12,13 @@ import Ajax from '../../utils/ajax';
 const logger = Logger.getLogger('InnerForm');
 
 const Manager = ({ dispatch, manager, loading, route }) => {
+  const { tableName } = route;
   let formQuery = null;
   let formEditor = null;
 
   const handleQuery = (e) => {
     const filter = formQuery.getFieldsValue();
-    dispatch({ type: 'manager/query', payload: filter });
+    dispatch({ type: 'manager/query', tableName, payload: filter });
   };
 
   const handleReset = (e) => {
@@ -29,6 +30,12 @@ const Manager = ({ dispatch, manager, loading, route }) => {
   };
 
   const handleModalOk = () => {
+    formEditor.validateFields(errors => {
+      if (errors)
+        return;
+    });
+    const data = formEditor.getFieldsValue();
+    dispatch({ type: 'manager/save', tableName, payload: data });
   };
 
   const handleInsert = (e) => {
@@ -49,14 +56,19 @@ const Manager = ({ dispatch, manager, loading, route }) => {
       Object.assign(newData, record);
       break;
     }
-    dispatch({ type: 'manager/handleInsert' });
-    if (formEditor) {
-      console.log(newData);
-      formEditor.setFieldsValue(newData);
-    }
+    dispatch({ type: 'manager/handleUpdate', payload: newData });
   };
 
   const handleDelete = (e) => {
+    const { selectedRowKeys, dataSource } = manager;
+    e.preventDefault();
+    Modal.confirm({
+      title: selectedRowKeys.length > 1 ? '确认批量删除' : '确认删除',
+      content: `当前被选中的行: ${selectedRowKeys.join(', ')}`,
+      onOk: () => {
+        dispatch({ type: 'manager/handleDelete' });
+      },
+    });
   };
 
   const handleToggle = (e) => {
@@ -100,8 +112,7 @@ const Manager = ({ dispatch, manager, loading, route }) => {
   const onClickImage = (text) => {
   };
 
-  const { tableName } = route;
-  const { expand, dataSource, tableLoading, selectedRowKeys, modalTitle, modalVisible } = manager;
+  const { expand, dataSource, tableLoading, selectedRowKeys, modalTitle, modalVisible, modalFormData } = manager;
   const { querySchema, tableConfig, dataSchema } = fetchSchema(tableName);
   const { tableSchema, fieldMap, primaryKey } = Editors.getTableSchema(tableName, dataSchema);
   const component = { onClickImage, onSingleRecordUpdate, onSingleRecordDelete, onSingleRecordComponent, fieldMap, primaryKey };
@@ -153,7 +164,12 @@ const Manager = ({ dispatch, manager, loading, route }) => {
           <Button><Icon type="export" />导出</Button>
         </Button.Group>
         <Modal {...editorProps}>
-          <FormEditor ref={(input) => { formEditor = input; }} />
+          <FormEditor ref={(input) => {
+            formEditor = input;
+            if (input) {
+              input.setFieldsValue(modalFormData);
+            }
+          }} />
         </Modal>
       </Row>
       <Row>

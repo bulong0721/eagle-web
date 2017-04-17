@@ -128,7 +128,7 @@ const Editors = {
       for (const row of rows) {
         formRows.push(row(getFieldDecorator, forUpdate, keysToUpdate));
       }
-      return (<Form horizontal>
+      return (<Form layout="horizontal">
         {formRows}
       </Form>);
     };

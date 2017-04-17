@@ -1,4 +1,4 @@
-import { select } from '../services/manager';
+import { query, save } from '../services/manager';
 
 export default {
   namespace: 'manager',
@@ -12,6 +12,7 @@ export default {
     previewVisible: false,
     previewImages: [],
     componentModalVisible: false,
+    modalFormData: {},
     expand: false,
   },
 
@@ -19,8 +20,8 @@ export default {
   },
 
   effects: {
-    *query({ payload }, { call, put }) {
-      const data = yield call(select, payload);
+    *query({ tableName, payload }, { call, put }) {
+      const data = yield call(query, tableName, payload);
       if (data) {
         yield put({
           type: 'querySuccess',
@@ -29,6 +30,10 @@ export default {
           }
         });
       }
+    },
+    *save({ tableName, payload }, { call, put }) {
+      yield put({ type: 'hideModal' });
+      const success = yield call(save, tableName, payload);
     }
   },
 
@@ -42,7 +47,8 @@ export default {
     hideModal(state, action) {
       return {
         ...state,
-        modalVisible: false
+        modalVisible: false,
+        modalFormData: {}
       };
     },
     handleToggle(state, action) {
@@ -70,7 +76,8 @@ export default {
         ...state,
         modalVisible: true,
         modalTitle: '更新',
-        modalInsert: false
+        modalInsert: false,
+        modalFormData: action.payload
       }
     },
   }

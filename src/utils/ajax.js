@@ -138,7 +138,8 @@ class CRUDUtil {
    * @returns {*}
    */
   insert(dataObj) {
-    return this.ajax.post(`${globalConfig.getAPIPath()}/${this.tableName}/insert`, dataObj);
+    console.log(dataObj);
+    return this.ajax.post(`${globalConfig.getAPIPath()}/${this.tableName}/save`, dataObj);
   }
 
   /**
@@ -150,7 +151,7 @@ class CRUDUtil {
    */
   update(keys = [], dataObj) {
     const tmp = keys.join(',');
-    return this.ajax.post(`${globalConfig.getAPIPath()}/${this.tableName}/update`, dataObj, { params: { keys: tmp } });
+    return this.ajax.post(`${globalConfig.getAPIPath()}/${this.tableName}/save`, dataObj, { params: { keys: tmp } });
   }
 
   /**
