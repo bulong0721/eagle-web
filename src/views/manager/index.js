@@ -9,7 +9,7 @@ import Renders from './util/renders';
 import Schemas from './util/schemas';
 import Ajax from '../../utils/ajax';
 
-const logger = Logger.getLogger('InnerForm');
+const logger = Logger.getLogger('Manager');
 
 const Manager = ({ dispatch, manager, loading, route }) => {
   const { tableName } = route;

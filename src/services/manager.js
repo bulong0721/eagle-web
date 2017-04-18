@@ -9,3 +9,8 @@ export async function save(table, params) {
   const ajax = new Ajax().CRUD(table);
   return await ajax.insert(params);
 }
+
+export async function remove(table, params) {
+  const ajax = new Ajax().CRUD(table);
+  return await ajax.delete(params);
+}
