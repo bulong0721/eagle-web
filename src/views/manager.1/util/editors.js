@@ -151,7 +151,7 @@ const Editors = {
       if (forUpdate === true && keysToUpdate && !keysToUpdate.has(field.key)) {
         return null;
       }
-      return (<FormItem key={field.key} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+      return (<FormItem key={field.key} label={field.title} labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
         {formItem(getFieldDecorator, forUpdate)}
       </FormItem>);
     }
