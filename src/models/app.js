@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 export default {
   namespace: 'app',
 
@@ -51,6 +53,14 @@ export default {
         type: 'handleSwitchMenuPopver',
       })
     },
+    *handleMgrTest({ payload }, { put }) {
+      console.log(payload);
+      notification.error({
+        message: '出错啦!',
+        description: `请联系管理员, 错误信息: xxxx`,
+        duration: 1000,
+      });
+    }
   },
 
   reducers: {

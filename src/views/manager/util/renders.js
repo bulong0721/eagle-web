@@ -1,5 +1,4 @@
 import React from 'react';
-import Schemas from './schemas';
 import Logger from '../../../utils/logger';
 import CommonUtil from '../../../utils/commonutil';
 
@@ -42,7 +41,7 @@ const Renders = {
       }
     });
 
-    const ignoreCache = Schemas.shouldIgnoreSchemaCache(tableName);
+    const ignoreCache = true;
     if (!ignoreCache) {
       this.tableNameSet.add(tableName);
     }

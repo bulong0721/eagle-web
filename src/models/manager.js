@@ -4,8 +4,10 @@ export default {
   namespace: 'manager',
 
   state: {
+    componentVisible: false,
     modalVisible: false,
     modalTitle: '新增',
+    modalAction: '',
     modalInsert: true,
     selectedRowKeys: [],
     dataSource: [],
@@ -13,6 +15,7 @@ export default {
     previewImages: [],
     componentModalVisible: false,
     modalFormData: {},
+    popupEditor: true,
     expand: false,
   },
 
@@ -44,13 +47,6 @@ export default {
         dataSource: action.payload.data
       };
     },
-    hideModal(state, action) {
-      return {
-        ...state,
-        modalVisible: false,
-        modalFormData: {}
-      };
-    },
     handleToggle(state, action) {
       return {
         ...state,
@@ -63,22 +59,32 @@ export default {
         selectedRowKeys: action.payload
       }
     },
-    handleInsert(state, action) {
+    showEditor(state, action) {
       return {
         ...state,
+        popupEditor: true,
         modalVisible: true,
-        modalTitle: '新增',
-        modalInsert: true
-      }
-    },
-    handleUpdate(state, action) {
-      return {
-        ...state,
-        modalVisible: true,
-        modalTitle: '更新',
-        modalInsert: false,
+        modalTitle: action.title,
+        modalAction: action.action,
         modalFormData: action.payload
       }
+    },
+    showComponent(state, action) {
+      return {
+        ...state,
+        popupEditor: false,
+        componentVisible: true,
+        modalTitle: action.title,
+        modalFormData: action.payload
+      }
+    },
+    hideModal(state, action) {
+      return {
+        ...state,
+        componentVisible: false,
+        modalVisible: false,
+        modalFormData: {}
+      };
     },
   }
 }

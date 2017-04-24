@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Icon, Switch } from 'antd';
-import styles from './sider.less';
+import styles from './index.less';
 import config from '../../config';
 import Menus from './menus';
 
@@ -21,7 +21,8 @@ class Sider extends React.Component {
     return (
       <div>
         <div className={styles.logo}>
-          {siderFold ? '' : <img alt={'logo'} src={config.logoSrc} />}
+          <img alt={'logo'} src={config.logoSrc} />
+          {siderFold ? '' : <span>{config.logoText}</span>}
         </div>
         <Menus {...menusProps} />
         {!siderFold ? <div className={styles.switchtheme}>

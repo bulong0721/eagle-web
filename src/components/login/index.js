@@ -24,7 +24,7 @@ class Login extends React.Component {
     return (
       <div className={styles.form}>
         <div className={styles.logo}>
-          <img alt={'logo'} src={config.logoSrc} height="40" width="110" />
+          <img alt={'logo'} src={config.logoSrc} height="50" />
         </div>
         <Form onSubmit={this.handleSubmit}>
           <FormItem>

@@ -2,7 +2,7 @@ module.exports = {
   name: 'Ant Design Admin',
   prefix: 'antdAdmin',
   footerText: '上海嗨酷强供应链信息技术有限公司 版权所有 沪ICP备16042340号',
-  logoSrc: 'http://e-jlt.com/public/images/index/logo1.png',
+  logoSrc: 'http://www.e-jlt.com/jlt-workplat/res/platui/images/logo_pic.jpg',
   logoText: '运营系统',
   needLogin: true,
   iconFontUrl: '//at.alicdn.com/t/font_c4y7asse3q1cq5mi.js',
