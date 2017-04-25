@@ -47,7 +47,7 @@ const App = ({ children, location, dispatch, app, loading }) => {
   return (
     <div>
       <Helmet>
-        <title>晶链通后台营运系统</title>
+        <title>运维大师</title>
       </Helmet>
       {login ?
         <Viewport {...viewportProps} /> :

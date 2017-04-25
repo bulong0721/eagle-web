@@ -1,8 +1,6 @@
 import React from 'react';
-import Logger from '../../../utils/logger';
 import CommonUtil from '../../../utils/commonutil';
 
-const logger = Logger.getLogger('Renders');
 const ACTION_KEY = 'singleRecordActions';
 
 const Renders = {
@@ -22,21 +20,16 @@ const Renders = {
     tableSchema.forEach(col => {
       const field = fieldMap.get(col.key);
       if (!field) {
-        logger.warn('unknown tableSchema col: %o', col);
         return;
       }
       if (field.render) {
-        logger.debug('bind user-defined render for field %o', field);
         col.render = field.render.bind(manager);
       }
       else if (field.showType === 'image') {
-        logger.debug('bind image render for field %o', field);
         col.render = this.getImageRender()(onClickImage);
       } else if (field.showType === 'file') {
-        logger.debug('bind file render for field %o', field);
         col.render = this.getFileRender;
       } else if (field.key === ACTION_KEY && field.actions && field.actions.length > 0) {
-        logger.debug('bind actions render for field %o', field);
         col.render = this.getActionRender(field, primaryKey)(onSingleRecordUpdate, onSingleRecordDelete, onSingleRecordComponent);
       }
     });

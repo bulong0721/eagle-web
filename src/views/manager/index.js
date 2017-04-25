@@ -6,7 +6,7 @@ import Builder from './util/builder';
 import Renders from './util/renders';
 import Ajax from '../../utils/ajax';
 
-const Manager = ({ dispatch, manager, loading, route }) => {
+const Manager = ({ dispatch, manager, loading, route, routes }) => {
   const { tableName } = route;
   let formQuery = null;
   let formEditor = null;

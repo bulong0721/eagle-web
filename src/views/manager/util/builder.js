@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Row, Col, DatePicker, Switch, Select, Icon, Radio, Collapse, InputNumber, Checkbox, Cascader, Button } from 'antd';
+import { Form, Input, Row, Col, DatePicker, Switch, Select, Icon, Radio, Collapse, InputNumber, Checkbox, Cascader, Button, notification } from 'antd';
 import moment from 'moment';
 
 const schemaMap = new Map();
@@ -13,11 +13,14 @@ const Builder = {
 
   getLocalSchema(tableName) {
     const ignoreCache = this.shouldIgnoreSchemaCache(tableName);
-    let schema;
+    let schema = {};
     try {
       schema = require(`../../../schema/${tableName}.schema.js`);
     } catch (e) {
-      console.error('load query schema error: %o', e);
+       notification.error({
+        message: '出错啦!',
+        description: `加载页面配置错误：${tableName}.schema.js`,
+      });
     }
     if (!ignoreCache) {
       schemaMap.set(tableName, schema);

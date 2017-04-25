@@ -1,9 +1,9 @@
 module.exports = {
   name: 'Ant Design Admin',
   prefix: 'antdAdmin',
-  footerText: '上海嗨酷强供应链信息技术有限公司 版权所有 沪ICP备16042340号',
-  logoSrc: 'http://www.e-jlt.com/jlt-workplat/res/platui/images/logo_pic.jpg',
-  logoText: '运营系统',
+  footerText: '运维大师有限公司 © 2015-2016',
+  logoSrc: 'images/antd.png',
+  logoText: '运维大师',
   needLogin: true,
   iconFontUrl: '//at.alicdn.com/t/font_c4y7asse3q1cq5mi.js',
   baseURL: 'http://47.92.30.98:7001/api',
@@ -14,15 +14,6 @@ module.exports = {
   tabMode: {  // tab模式相关配置
     enable: false,  // 是否开启tab模式
     allowDuplicate: false,  // 同一个菜单项只允许一个tab
-  },
-
-  log: {
-    level: 'info',  // 日志级别, 类似slf4j中的root logger, 目前支持debug/info/warn/error 4种级别
-    // 除了root logger以外, 也可以为每个logger单独设置级别
-    debug: [],
-    info: [],
-    warn: [],
-    error: ['loggerA', 'loggerB'],  // 示例, 对于loggerA和loggerB使用error级别, 其他logger使用默认的info级别
   },
 
   api: {  // 对后端请求的相关配置
@@ -57,22 +48,6 @@ module.exports = {
     collapsible: true,  // 是否显示折叠侧边栏的按钮
     autoMenuSwitch: true,  // 只展开一个顶级菜单, 其他顶级菜单自动折叠
   },
-
-  DBTable: {  // DBTable组件相关配置
-    pageSize: 50, // 表格每页显示多少条数据
-
-    default: {  // 针对每个表格的默认配置
-      showExport: true,  // 显示导出按钮, 默认true
-      showImport: true,  // 显示导入按钮, 默认true
-      showInsert: true,  // 显示新增按钮, 默认true
-      showUpdate: true,  // 显示修改按钮, 默认true
-      showDelete: true,  // 显示删除按钮, 默认true
-
-      asyncSchema: false,  // 是否从服务端加载schema, 默认false
-      ignoreSchemaCache: false,  // 是否忽略schema的缓存, 对于异步schema而言, 默认只会请求一次后端接口然后缓存起来
-    },
-  },
-
   /**
    * 是否要跨域请求
    *
