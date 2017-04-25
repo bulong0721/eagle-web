@@ -1,8 +1,8 @@
 import React from 'react';
 import { Router, Route, IndexRedirect } from 'dva/router';
-import App from './views/index';
-import Dashboard from './views/dashboard/index';
-import Manager from './views/manager/index'
+import App from './views';
+import Dashboard from './views/dashboard';
+import Manager from './views/manager'
 
 export default function ({ history, app }) {
   return (
